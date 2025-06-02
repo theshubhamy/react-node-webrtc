@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useSocket } from '../hooks/useSocket';
 import { useParams } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import ReactPlayer from 'react-player';
 import Peer from '../services/peer';
 
