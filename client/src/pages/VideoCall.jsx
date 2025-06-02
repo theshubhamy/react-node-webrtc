@@ -125,7 +125,7 @@ const VideoCall = () => {
   }, [isConnected, myStream, callUser]);
 
   return (
-    <div className="grid min-h-svh lg:grid-cols-2">
+    <div className="grid min-h-svh lg:grid-cols-1">
       <div className="flex flex-col gap-4 p-6">
         <div className="text-4xl font-medium text-center">Room: {roomId}</div>
 
@@ -139,7 +139,7 @@ const VideoCall = () => {
           </div>
         )}
 
-        <div className="grid gap-4 md:grid-cols-2 p-4">
+        <div className="grid gap-4  md:grid-cols-2 p-4">
           <div className="bg-muted/100 aspect-video rounded-xl p-4">
             <p className="text-xl font-medium">You ({userId})</p>
             {myStream && (
