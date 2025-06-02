@@ -1,0 +1,14 @@
+services:
+  client:
+    build:
+      context: ./client
+    ports:
+      - '3000:80' # React served on http://localhost:3000
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - '8800:8800' # Socket.io backend
