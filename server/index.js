@@ -17,10 +17,8 @@ io.on('connection', socket => {
 
     socket.join(room);
 
-    // Notify everyone in room that a user joined with their socket ID
     io.to(room).emit('user:joined', { userId, id: socket.id });
 
-    // Confirm join to the user
     io.to(socket.id).emit('room:join', data);
   });
 
