@@ -9,20 +9,28 @@ const socketidTouserIdMap = new Map();
 
 io.on('connection', socket => {
   console.log(`Socket Connected`, socket.id);
+
   socket.on('room:join', data => {
     const { userId, room } = data;
     userIdToSocketIdMap.set(userId, socket.id);
     socketidTouserIdMap.set(socket.id, userId);
-    io.to(room).emit('user:joined', { userId, id: socket.id });
+
     socket.join(room);
+
+    // Notify everyone in room that a user joined with their socket ID
+    io.to(room).emit('user:joined', { userId, id: socket.id });
+
+    // Confirm join to the user
     io.to(socket.id).emit('room:join', data);
   });
 
   socket.on('user:call', ({ to, offer }) => {
+    console.log('user:call to socket', to, 'from', socket.id);
     io.to(to).emit('incomming:call', { from: socket.id, offer });
   });
 
   socket.on('call:accepted', ({ to, ans }) => {
+    console.log('call:accepted to socket', to, 'from', socket.id);
     io.to(to).emit('call:accepted', { from: socket.id, ans });
   });
 
